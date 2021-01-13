@@ -1,4 +1,6 @@
-public class Passenger extends Car {
+import java.io.Serializable;
+
+public class Passenger extends Car implements Serializable {
 int passengersMax;
 
     public int getPassengersMax() {

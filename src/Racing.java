@@ -1,4 +1,6 @@
-public class Racing extends Sports{
+import java.io.Serializable;
+
+public class Racing extends Sports implements Serializable {
 
     int power;
 

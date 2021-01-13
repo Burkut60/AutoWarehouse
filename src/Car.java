@@ -1,14 +1,16 @@
-public class Car {
+import java.io.Serializable;
 
+public class Car implements Serializable {
 
-    String model;
-    String type;
-    int maxSpeed;
+private static final long serialVersionUID = 1L;
 
-   public Car(String model, String type, int maxSpeed){
-this.model = model;
-this.type = type;
-this.maxSpeed = maxSpeed;
+   private String model;
+   private String type;
+   private int maxSpeed;
+
+   public Car(String model, String type, int maxSpeed){ this.model = model;
+   this.type = type;
+   this.maxSpeed = maxSpeed;
     }
 
 
@@ -35,5 +37,4 @@ this.maxSpeed = maxSpeed;
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
-
 }

@@ -1,4 +1,6 @@
-public class Sports extends Car{
+import java.io.Serializable;
+
+public class Sports extends Car implements Serializable {
 
     int accelerationToOneHundred;
 

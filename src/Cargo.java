@@ -1,4 +1,6 @@
-public class Cargo extends Car {
+import java.io.Serializable;
+
+public class Cargo extends Car implements Serializable {
     int luggage;
 
     public int getLuggage() {

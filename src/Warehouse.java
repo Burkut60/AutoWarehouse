@@ -1,12 +1,14 @@
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
 public class Warehouse {
- public static void main(String[] args) throws IOException {
-ArrayList<Car> listCar = new ArrayList<Car >();
+ public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+  ArrayList<Passenger> passengerList = new ArrayList<>();
+  ArrayList<Cargo> cargoList = new ArrayList<>();
+  ArrayList<Racing> racingList = new ArrayList<>();
+  ArrayList<Sports> sportsList = new ArrayList<>();
 
  Passenger ps1 = new Passenger("Opel","Passenger",180, 5);
   Passenger ps2 = new Passenger("Bmw","Passenger",240, 5);
@@ -15,30 +17,31 @@ ArrayList<Car> listCar = new ArrayList<Car >();
   Racing rc1 = new Racing("Seat","Racing",270,3,300);
   Sports sp1= new Sports("Bmw", "Sports", 400,3);
 
-  listCar.add(ps1);
-  listCar.add(ps2);
-  listCar.add(cr1);
-  listCar.add(cr2);
-  listCar.add(rc1);
-  listCar.add(sp1);
+  passengerList.add(ps1);
+  passengerList.add(ps2);
+  cargoList.add(cr1);
+  cargoList.add(cr2);
+  racingList.add(rc1);
+  sportsList.add(sp1);
 
-  listCar.remove(1);
+  ArrayList<Object> a = new ArrayList<>();
+  a.add(passengerList);
+  a.add(cargoList);
+  a.add(racingList);
+  a.add(sportsList);
 
+  FileOutputStream outputStream = new FileOutputStream("C:\\Users\\123\\Downloads\\save.txt");
+  ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+  objectOutputStream.writeObject(a);
 
-for (Car a :listCar){
-    System.out.println(a.type);
+  objectOutputStream.close();
 
-    FileWriter fileWriter = new FileWriter("ListCar.txt");
-    for (Car car: listCar){
-     String model = car.model;
-     String tip = car.type;
-     int maxSpeed = car.maxSpeed;
-fileWriter.close();
+  FileInputStream fileInputStream= new FileInputStream("C:\\Users\\123\\Downloads\\save.txt");
+  ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
+  ArrayList< Cargo > carList  = (ArrayList) objectInputStream.readObject();
 
-    }
-
-}
+  System.out.println(carList);
  }
 }
 
