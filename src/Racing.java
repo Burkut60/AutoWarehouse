@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Racing extends Sports implements Serializable {
+public class Racing extends Car implements Serializable {
 
     int power;
 
@@ -13,7 +13,7 @@ public class Racing extends Sports implements Serializable {
     }
 
     public Racing(String model, String type, int maxSpeed, int accelerationToOneHundred, int power) {
-        super(model, type, maxSpeed, accelerationToOneHundred);
+        super(model, type, maxSpeed);
         this.power = power;
     }
 

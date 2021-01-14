@@ -1,47 +1,68 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Warehouse {
  public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-  ArrayList<Passenger> passengerList = new ArrayList<>();
-  ArrayList<Cargo> cargoList = new ArrayList<>();
-  ArrayList<Racing> racingList = new ArrayList<>();
-  ArrayList<Sports> sportsList = new ArrayList<>();
+     ArrayList<Passenger> passengerList = new ArrayList<>();
+     ArrayList<Cargo> cargoList = new ArrayList<>();
+     ArrayList<Racing> racingList = new ArrayList<>();
+     ArrayList<Sports> sportsList = new ArrayList<>();
 
- Passenger ps1 = new Passenger("Opel","Passenger",180, 5);
-  Passenger ps2 = new Passenger("Bmw","Passenger",240, 5);
-  Cargo cr1 = new Cargo("Maz","Cargo",120,2);
-  Cargo cr2 = new Cargo("Belaz", "Cargo", 110, 2);
-  Racing rc1 = new Racing("Seat","Racing",270,3,300);
-  Sports sp1= new Sports("Bmw", "Sports", 400,3);
+     System.out.println("Enter the car category " +"    " + "Passenger, Cargo, Racing, Sports ");
+     Scanner scanner = new Scanner(System.in);
+     String auto_category = scanner.nextLine();
+     System.out.println(auto_category);
+     System.out.println("Enter car brand");
+     String brand = scanner.nextLine();
+     System.out.println("Enter type ");
+     String type = scanner.nextLine();
+     System.out.println("Enter max speed ");
+     int maxSpeed = scanner.nextInt();
 
-  passengerList.add(ps1);
-  passengerList.add(ps2);
-  cargoList.add(cr1);
-  cargoList.add(cr2);
-  racingList.add(rc1);
-  sportsList.add(sp1);
 
-  ArrayList<Object> a = new ArrayList<>();
-  a.add(passengerList);
-  a.add(cargoList);
-  a.add(racingList);
-  a.add(sportsList);
+     if (auto_category.equals("Passenger")){
+         System.out.println("Enter passengers max ");
+         int passengersMax = scanner.nextInt();
+         Passenger newPassenger = new Passenger(brand,type,maxSpeed,passengersMax);
+         passengerList.add(newPassenger);
+     }
+     if (auto_category.equals("Cargo")){
+         System.out.println("Enter luggage ");
+         int cargoTon = scanner.nextInt();
+         Cargo newCargo = new Cargo(brand,type,maxSpeed,cargoTon);
+         cargoList.add(newCargo);
+     }
+     if( auto_category.equals("Racing")){
+         System.out.println("Enter accelerationToOneHundred");
+         int accelerationToOneHundred = scanner.nextInt();
+         System.out.println("Enter power");
+         int power = scanner.nextInt();
+         Racing newRacing = new Racing(brand,type,maxSpeed,accelerationToOneHundred ,power);
+         racingList.add(newRacing);
+     }
+     if ( auto_category.equals("Sports")){
+         System.out.println("Enter accelerationToOneHundred");
+         int acceleration = scanner.nextInt();
+         Sports newSports = new Sports(brand,type,maxSpeed,acceleration);
+         sportsList.add(newSports);
+     }
 
-  FileOutputStream outputStream = new FileOutputStream("C:\\Users\\123\\Downloads\\save.txt");
-  ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-  objectOutputStream.writeObject(a);
+     ArrayList<Object> a = new ArrayList<>();
+     a.add(passengerList);
+     a.add(cargoList);
+     a.add(racingList);
+     a.add(sportsList);
 
-  objectOutputStream.close();
-
-  FileInputStream fileInputStream= new FileInputStream("C:\\Users\\123\\Downloads\\save.txt");
-  ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-  ArrayList< Cargo > carList  = (ArrayList) objectInputStream.readObject();
-
-  System.out.println(carList);
+     Util util = new Util();
+     util.save(a);
+     util.ride();
  }
-}
+
+
+
+ }
+
 
