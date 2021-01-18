@@ -15,5 +15,4 @@ public class Cargo extends Car implements Serializable {
         super(model, type, maxSpeed);
         this.luggage = luggage;
     }
-
 }

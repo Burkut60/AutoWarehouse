@@ -16,5 +16,4 @@ public class Racing extends Car implements Serializable {
         super(model, type, maxSpeed);
         this.power = power;
     }
-
 }
