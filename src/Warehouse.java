@@ -4,22 +4,18 @@ import java.util.Scanner;
 
 public class Warehouse {
 
-   static ArrayList<Car> carList1 = new ArrayList<>();
+    static ArrayList<Car> carList1 = new ArrayList<>();
+    static Util util = new Util();
 
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         menu();
     }
 
-    public static void menu() throws IOException {
+    public static void menu() throws IOException, ClassNotFoundException {
 
-        FileOutputStream outputStream = new FileOutputStream("C:\\Users\\123\\Downloads\\save.txt");
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-        objectOutputStream.writeObject(carList1);
-        objectOutputStream.close();
-
+        util.ride(carList1);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("add auto enter 1, view the list enter 2, to delete auto index enter 3 ");
+        System.out.println("add auto enter 1, view the list enter 2, to delete auto index enter1 3 ");
         int warehouseActivities = scanner.nextInt();
 
         if (warehouseActivities == 1) {
@@ -27,21 +23,21 @@ public class Warehouse {
         }
 
         if (warehouseActivities == 2) {
-            FileInputStream fileInputStream = new FileInputStream("C:\\Users\\123\\Downloads\\save.txt");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            System.out.println(objectInputStream.toString());
+            util.ride(carList1);
         }
+
+        menu();
 
         if (warehouseActivities == 3) {
             System.out.println("\n" +
                     "Enter the index of the object to be deleted");
             int ind = scanner.nextInt();
             carList1.remove(ind);
+            menu();
         }
     }
 
-    public static void   car() throws IOException {
-
+    public static void car() throws IOException, ClassNotFoundException {
         ArrayList<Car> carList = new ArrayList<>();
 
         Scanner scanner1 = new Scanner(System.in);
@@ -81,11 +77,9 @@ public class Warehouse {
             carList.add(newSports);
         }
 
-        for (Car a : carList){
-            Car car = a;
-            System.out.println(car);
-            carList1.add(car);
-
+        for (Car a : carList) {
+            carList1.add(a);
+            util.save(carList1);
         }
 
         menu();
