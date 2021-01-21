@@ -37,4 +37,10 @@ public class Car implements Serializable {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
+
+    public String toString(){
+     return "Car{" +
+     "Model = " + model + " Type =" + type + " Max Speed = " + maxSpeed +
+             " } ";
+    }
 }

@@ -3,15 +3,21 @@ import java.util.ArrayList;
 
 public class Util {
 
-    public void save(ArrayList<Car> o)  {
+    public void save(ArrayList<Car> o) {
         try {
-            FileOutputStream outputStream;
-            ObjectOutputStream objectOutputStream;
-            outputStream = new FileOutputStream("C:\\Users\\123\\Downloads\\save.txt");
-            objectOutputStream = new ObjectOutputStream(outputStream);
-            for (Car obj : o) {
-                objectOutputStream.writeObject(obj);
+            File myFile = new File("C:\\Users\\123\\Downloads\\save.txt");
+            if (!myFile.exists()) {
+                myFile.createNewFile();
+            } else {
+                System.out.println("File already exists ");
             }
+
+            FileOutputStream outputStream = new FileOutputStream(myFile);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+            for (Car myObj : o) {
+                objectOutputStream.writeObject(myObj);
+            }
+
             objectOutputStream.close();
             outputStream.close();
         } catch (Exception ex) {
@@ -19,7 +25,7 @@ public class Util {
         }
     }
 
-    public void ride(ArrayList<Car> carList) throws IOException {
+    public void ride() throws IOException {
         FileInputStream fileInputStream = new FileInputStream("C:\\Users\\123\\Downloads\\save.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         while (true) {
